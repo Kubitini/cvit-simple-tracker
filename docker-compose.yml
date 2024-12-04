@@ -1,0 +1,44 @@
+# Please, see the README.md file for instructions.
+
+version: "3"
+
+services:
+
+  simple-tracker:
+    build: .
+    image: simple-tracker:latest
+    environment:
+      PORT: 3000
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      DATA_FILEPATH: "./tracked-data"
+    labels:
+      traefik.http.routers.simple-tracker.rule: "Host(`localhost`)"
+    ports:
+      - "3000"
+    depends_on:
+      - traefik
+      - redis
+
+  redis-insights:
+    image: redis/redisinsight:2.62
+    ports:
+      - "5540:5540"
+
+  redis:
+    image: redis:7.2
+    ports:
+      - "6379"
+
+  traefik:
+    image: traefik:2.9.6
+    command:
+      - "--providers.docker"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+      - "--entrypoints.websecure.http.tls=true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "80:80"
+      - "443:443"
