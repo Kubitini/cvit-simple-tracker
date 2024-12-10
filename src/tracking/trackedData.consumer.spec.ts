@@ -19,6 +19,7 @@ import { StorageModule } from '../storage/storage.module';
 import { INestApplication } from '@nestjs/common';
 import { TrackedDataMapper } from './trackedData.mapper';
 
+// REVIEW: Proč se používá "nameof" místo "TrackedDataConsumer.name"?
 describe(nameof(TrackedDataConsumer).split(' ')[0], () => {
   const oldEnv = process.env;
 
@@ -37,6 +38,7 @@ describe(nameof(TrackedDataConsumer).split(' ')[0], () => {
     process.env = oldEnv;
   });
 
+  // REVIEW: Proč se nastavuje celá aplikace kvůli unit testům?
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [ConfigModule, RedisModule, StorageModule],
@@ -75,7 +77,10 @@ describe(nameof(TrackedDataConsumer).split(' ')[0], () => {
         ).rejects.toThrow();
       });
 
+      // REVIEW: Test by mohl být mnohem jednodušší, kdyby se používal dependency inversion
+      // REVIEW: Test by měl mít strukturu: setup -> action -> expect
       it(`should store jobs in file as FIFO`, async () => {
+        // REVIEW: Zbytečně složité
         const orderedData = [...Array(3).keys()].map((index) =>
           asTrackedData({ order: index }),
         );

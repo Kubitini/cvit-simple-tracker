@@ -37,7 +37,7 @@ describe('App (e2e)', () => {
     it('responds with the numeric count in the body', async () => {
       return request(app.getHttpServer())
         .get('/count')
-        .then((response) => JSON.parse(response.text))
+        .then((response) => JSON.parse(response.text)) // REVIEW: Server vrací číslo, proč se používá JSON.parse?
         .then((count) => {
           expect(count).toBeGreaterThanOrEqual(0);
         });

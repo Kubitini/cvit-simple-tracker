@@ -40,5 +40,5 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - "80:80"
+      - "3500:80"
       - "443:443"

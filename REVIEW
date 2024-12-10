@@ -1,0 +1,24 @@
+Pros:
+    - Dobré používání typů
+        - Krom jedné výjimky (Number vs number)
+    - Hezká struktura projektu
+    - Použití zajímavého tech stacku
+    - Používá linter a formatter
+    - Částečně připraveno na škálování
+    - Validace vstupů
+    - Napsané testy
+
+Cons:
+    - Všude se závisí na implementacích
+        - Nepoužívá dependency inversion
+    - "nameof<AppConfig>((p) => p.port)"
+        - V tomto projektu zbytečné
+    - Docker compose se nedá použít na vývoj
+    - Testy zapisují na disk
+    - Flaky E2E testy
+        - Velmi často padají
+    - Často dělá věci zbytečně složitě
+        - Poškozuje to čitelnost
+    - Soubor "tracked-data" by měl být v .gitignore
+
+Verdikt: I když tady máme hodně "cons", tak úloha je dobře zpracovaná a funkční. Vesměs se jedná o malé věci. Obecně se nám výsledek líbí, takže jsme se shodli na tom, že bychom kandidáta pozvali.

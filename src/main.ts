@@ -16,7 +16,7 @@ async function bootstrap() {
 
   const config = app.get<ConfigService<AppConfig, true>>(ConfigService);
   const port = config.get<number>(
-    nameof<AppConfig>((p) => p.port),
+    nameof<AppConfig>((p) => p.port), // REVIEW: Proč nepoužít obyčejný string?
     { infer: true },
   );
   await app.listen(port);

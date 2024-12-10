@@ -76,6 +76,8 @@ describe(nameof(TrackingService), () => {
 
           const redisCount = Number(await redis.get(redisCountKey));
           const expectedCount = redisCountBeforeTest + expectedIncrement;
+
+          // REVIEW: Proč by se mohlo stát, že bude "redisCount" větší než "redisCountBeforeTest"?
           assert(
             redisCount > redisCountBeforeTest ||
               redisCountBeforeTest == expectedCount,
