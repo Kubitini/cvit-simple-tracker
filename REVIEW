@@ -1,6 +1,5 @@
 Pros:
     - Dobré používání typů
-        - Krom jedné výjimky (Number vs number)
     - Hezká struktura projektu
     - Použití zajímavého tech stacku
     - Používá linter a formatter

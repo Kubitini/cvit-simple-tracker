@@ -22,7 +22,7 @@ export class TrackingService {
 
   async getCount(): Promise<number> {
     const count = (await this.redis.get(this.redisCountKey)) ?? 0;
-    return Number(count); // REVIEW: Why not use parseInt? This returns instance of class Number, but the function should return primitive "number"
+    return Number(count);
   }
 
   async track(data: TrackedData) {
